@@ -1,1 +1,168 @@
 
+package arrays;
+
+public class FindAllPairsWhoseSumIsEqualToGivenNum {
+	
+	
+	static void findPairs(int inputArr[],int inputNum){
+		System.out.println("Pairs of elements whose sum is "+inputNum+" are : ");
+		for(int i=0;i<inputArr.length;i++){
+			for(int j=i+1;j<inputArr.length;j++){
+				if(inputArr[i]+inputArr[j]==inputNum){
+					System.out.println(inputArr[i]+ " + "+ inputArr[j]+"="+inputNum);
+				}
+			}
+		}
+	}
+	
+	public static void main(String[] args) {
+		findPairs(new int[]{4, 6, 5, -10, 8, 5, 20}, 10);
+	}
+
+}
+// ===============================================================
+
+package arrays;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class FindSameElementsInArray {
+	
+	static void getMostFreqElement(int inputArr[]){
+		HashMap<Integer,Integer> eleCountMp=new HashMap<Integer,Integer>();
+		for(int i:inputArr)
+		{
+			if(eleCountMp.containsKey(i)){
+				eleCountMp.put(i, eleCountMp.get(i)+1);
+				
+			}
+			else
+			{
+				eleCountMp.put(i,1);
+			}
+		}
+		
+		int ele=0;
+		int freq=1;
+		
+		Set<Entry<Integer,Integer>>entrySet=eleCountMp.entrySet();
+		for(Entry<Integer,Integer>entry: entrySet){
+			if(entry.getValue()>freq){
+				ele=entry.getKey();
+				freq=entry.getValue();
+			}
+		}
+		
+		if(freq>1){
+			System.out.println("Input Array: "+Arrays.toString(inputArr));
+			System.out.println("The most frequent element is : "+ele);
+			System.out.println("Its frequency is : "+freq);
+			System.out.println(" ======================================== ");
+			
+			
+		}
+		
+		else{
+			System.out.println("Input Array "+Arrays.toString(inputArr));
+			System.out.println("No frequent elements . All elements are unique in given array...!");
+			System.out.println("-==========================================");
+			
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		getMostFreqElement(new int[]{4, 5, 8, 7, 4, 7, 6,7});
+		getMostFreqElement(new int[]{1, 2, 7, 5, 3, 6});
+	}
+
+}
+// ==========================================================================
+
+
+package arrays;
+
+import java.util.HashSet;
+
+public class IntersectionOfArrays {
+	
+	
+	public static void main(String[] args) {
+		String[] s1={"ONE", "TWO", "THREE", "FOUR", "FIVE", "FOUR"};
+		String[] s2={"THREE", "FOUR", "FIVE", "SIX", "SEVEN", "FOUR"};
+		
+		HashSet<String> set=new HashSet<String>();
+		for(int i=0 ;i<s1.length;i++){
+			for(int j=0;j<s2.length;j++){
+				if(s1[i].equals(s2[j]))
+				{
+					set.add(s1[i]);
+				}
+			}
+		}
+		System.out.println(set);
+		
+	}
+
+}
+// ===========================================================================================
+
+package arrays;
+
+public class MatrixRotationBy90Degree {
+	
+/* Follow below steps: 
+Step1. take transpose of matrix 
+Step2. swap columns of transpose of matrix  */
+
+	public static void main(String[] args) {
+		int[][]matrix=new int[6][6];
+		int i,j,k,temp;
+		for(i=0;i<6;i++){
+			for(j=0;j<6;j++)
+					matrix[i][j]=i*10+j;
+		}	
+			System.out.println("Before Transpose..");
+			for(i=0;i<6;i++){
+				for(j=0;j<6;j++)
+					System.out.println("\t"+matrix[i][j]);
+				System.out.println();
+			}
+		System.out.println("After Transpose.. ");
+		//transpose of matrix
+		for(i=0;i<6;i++){
+			for(j=i;j<6;j++)
+				if(i!=j){
+					temp=matrix[i][j];
+					matrix[i][j]=matrix[j][i];
+					matrix[j][i]=temp;
+				}
+		}
+		
+		for(i=0;i<6;i++){
+			for(j=0;j<6;j++)
+				System.out.println("\t"+matrix[i][j]);
+			System.out.println();
+		}
+		
+		//rotate by 90 degrees
+		for(i=0,k=5;i<k;i++,k--){
+			for(j=0;j<6;j++){
+				temp=matrix[j][i];
+				matrix[j][i]=matrix[j][k];
+				matrix[j][k]=temp;
+			}
+		}
+		System.out.println("after 90 degree rotation.. ");
+		for(i=0;i<6;i++){
+			for(j=0;j<6;j++)
+				System.out.println("\t"+matrix[i][j]);
+			System.out.println();
+		}
+	}
+	
+
+}
