@@ -166,3 +166,36 @@ Step2. swap columns of transpose of matrix  */
 	
 
 }
+
+
+// =================================================================================
+
+package arrays;
+
+import java.util.Arrays;
+
+public class ZeroesAndNonZeroesArray {
+	
+	static void moveZeroesToEnd(int inputArr[]){
+		int counter=0;
+		for(int i=0;i<inputArr.length;i++){
+			if(inputArr[i]!=0){
+				inputArr[counter]=inputArr[i];
+				counter++;
+				
+			}
+		}
+		
+		while(counter<inputArr.length)
+		{
+			inputArr[counter]=0;
+			counter++;
+		}
+		System.out.println(Arrays.toString(inputArr));
+	}
+	public static void main(String[] args) {
+		moveZeroesToEnd(new int[]{12, 0, 7, 0, 8, 0, 3});
+	}
+
+}
+
